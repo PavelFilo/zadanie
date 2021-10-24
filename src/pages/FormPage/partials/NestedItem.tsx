@@ -12,9 +12,9 @@ interface INestedItemProps {
 export const NestedItem = ({ index }: INestedItemProps) => {
   const [shown, setShown] = useState<boolean>(false);
 
-  const onShowToggle = useCallback(() => {
+  const onShowToggle = () => {
     setShown((prev) => !prev);
-  }, []);
+  };
 
   return (
     <div>

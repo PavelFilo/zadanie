@@ -125,9 +125,9 @@ export const FormPage = () => {
   };
 
   // function to add nested item in second form
-  const onAddNested = () => {
+  const onAddNested = useCallback(() => {
     setNestedCount((prev) => prev + 1);
-  };
+  }, []);
 
   // VARIABLES
   const initialValues = useMemo(() => {
