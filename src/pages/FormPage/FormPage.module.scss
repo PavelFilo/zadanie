@@ -18,6 +18,10 @@
   transform-origin: top;
   overflow: hidden;
 
+  &.firstRow {
+    max-width: 30rem;
+  }
+
   &.shrinked {
     transform: scaleY(0);
     height: 0;

@@ -35,7 +35,7 @@ const continentsOptions = [
 
 export const FirstStepForm = () => {
   return (
-    <div className={css.formRow}>
+    <div className={`${css.formRow} ${css.firstRow}`}>
       <Input label="Name" name="name" />
 
       <Input label="Address" name="address" />
