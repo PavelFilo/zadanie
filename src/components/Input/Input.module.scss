@@ -1,0 +1,46 @@
+.wInput {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  min-width: 200px;
+  height: 100%;
+
+  .wLabel {
+    display: flex;
+    margin-bottom: 4px;
+
+    .tLabel {
+      font-size: 14px;
+    }
+  }
+
+  .fInput {
+    border: 1px solid grey;
+    border-radius: 5px;
+
+    font-size: 14px;
+
+    padding: 8px 5px;
+
+    &:active,
+    &:focus {
+      outline: 0;
+    }
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  .inputDiv {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    input {
+      flex-grow: 1;
+    }
+  }
+}

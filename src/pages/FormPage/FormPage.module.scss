@@ -1,0 +1,33 @@
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.formRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.textArea {
+  height: 200px;
+  width: 300px;
+  box-sizing: border-box;
+  resize: none;
+}
+
+.wButtons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.marginTop {
+  margin-top: 15px;
+}
