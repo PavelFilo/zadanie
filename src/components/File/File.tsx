@@ -13,6 +13,7 @@ export interface IFileProps {
 
 export const File = ({ name, label }: IFileProps) => {
   const { setFieldValue, values } = useFormikContext<any>();
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: (acceptedFiles) => {
       setFieldValue(name, acceptedFiles[0]);

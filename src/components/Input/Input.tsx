@@ -8,6 +8,10 @@ import get from "lodash.get";
 import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
 
 export interface IInputProps {
+  /**
+   * Whether input should be textarea or not
+   * @default 'false'
+   */
   bTextArea?: boolean;
 
   classNameInput?: string;

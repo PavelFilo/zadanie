@@ -1,12 +1,9 @@
 // core
 import React from "react";
+// components
 import { Input } from "../../../components/Input/Input";
 // styles
 import css from "../FormPage.module.scss";
-// libraries
-// interface IThirdStepFormProps extends IDefaultProps {
-
-// }
 
 export const ThirdStepForm = () => {
   return (

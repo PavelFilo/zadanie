@@ -1,14 +1,11 @@
 // core
 import React from "react";
+// components
 import { Input } from "../../../components/Input/Input";
+import { Select } from "../../../components/Select/Select";
 // styles
 import css from "../FormPage.module.scss";
-import { Select } from "../../../components/Select/Select";
 
-// libraries
-// interface IFirstStepFormProps extends IDefaultProps {
-
-// }
 const continentsOptions = [
   {
     id: "ea",

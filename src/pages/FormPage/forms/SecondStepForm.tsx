@@ -1,11 +1,12 @@
 // core
 import React from "react";
+// components
 import { Input } from "../../../components/Input/Input";
-// styles
-import css from "../FormPage.module.scss";
 import { File } from "../../../components/File/File";
 import { Button } from "../../../components/Button/Button";
-// libraries
+// styles
+import css from "../FormPage.module.scss";
+import { NestedItem } from "../partials/NestedItem";
 interface ISecondStepFormProps {
   nestedCount: number;
   onAdd: () => void;
@@ -27,24 +28,14 @@ export const SecondStepForm = ({
           label="Description"
         />
       </div>
+
       <div>
         {Array(nestedCount)
           .fill("")
           .map((_, index) => (
-            <div key={index} className={`${css.formRow} ${css.marginTop}`}>
-              <Input label="Name" name={`nested[${index}].name`} />
-              <Input
-                label="Count"
-                type="number"
-                name={`nested[${index}].count`}
-              />
-              <Input
-                label="Price"
-                type="number"
-                name={`nested[${index}].price`}
-              />
-            </div>
+            <NestedItem key={index} index={index} />
           ))}
+
         {nestedCount < 5 && (
           <Button className={css.marginTop} onClick={() => onAdd()}>
             +

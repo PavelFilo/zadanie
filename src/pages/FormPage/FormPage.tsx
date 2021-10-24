@@ -61,11 +61,15 @@ const REQUEST_URL =
   "https://api.softygon.com/webhook?token=VPxJ4QLVVCUxOC7yJf8NhCUZiIqx0IUn7KUOoRIe";
 
 export const FormPage = () => {
+  // STATE
   const [step, setStep] = useState<number>(1);
   const [nestedCount, setNestedCount] = useState<number>(0);
   const [error, setError] = useState<string | undefined>(undefined);
   const [successCallout, setSuccessCallout] = useState<boolean>(false);
 
+  // EVENTS
+
+  // function to handle submit of form and send API POST request
   const onSubmit = useCallback(
     (values: IFormValues, helpers: FormikHelpers<IFormValues>) => {
       delete values.file;
@@ -75,6 +79,7 @@ export const FormPage = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
       };
+
       fetch(REQUEST_URL, requestOptions)
         .then((response) => response.json())
         .then((response) => {
@@ -89,6 +94,10 @@ export const FormPage = () => {
     []
   );
 
+  /**
+   * function to handle click on next step
+   * @note 'errors' & 'setFieldTouched' are there to stop user from continuing with error to next step
+   */
   const onNextClick = useCallback(
     (
       errors: FormikErrors<IFormValues>,
@@ -96,6 +105,7 @@ export const FormPage = () => {
     ) => {
       formFields[step - 1].forEach((field) => setFieldTouched(field));
       const errorKeys = Object.keys(errors);
+
       if (formFields[step - 1].find((field) => errorKeys.includes(field)))
         setError("First resolve errors in current step to continue to next.");
       else {
@@ -109,14 +119,17 @@ export const FormPage = () => {
     [error, step]
   );
 
+  // function to handle back click
   const onBackClick = () => {
     setStep((prev) => prev - 1);
   };
 
+  // function to add nested item in second form
   const onAddNested = () => {
     setNestedCount((prev) => prev + 1);
   };
 
+  // VARIABLES
   const initialValues = useMemo(() => {
     const values = localStorage.getItem("values");
 
@@ -143,6 +156,7 @@ export const FormPage = () => {
       ) : (
         <Formik
           validateOnChange
+          validateOnMount
           initialValues={initialValues}
           validationSchema={formValidationSchema}
           onSubmit={onSubmit}
@@ -158,11 +172,14 @@ export const FormPage = () => {
               <div className={css.wButtons}>
                 {step > 1 && <Button onClick={onBackClick}>Back</Button>}
 
-                {step < MAX_STEP ? (
+                {step < MAX_STEP && (
                   <Button onClick={() => onNextClick(errors, setFieldTouched)}>
                     Next
                   </Button>
-                ) : (
+                )}
+
+                {/* Must be separated from one before this one, because of autosubmiting form after all fields are touched bug */}
+                {step === MAX_STEP && (
                   <Button disabled={isSubmitting} type="submit">
                     Submit
                   </Button>
