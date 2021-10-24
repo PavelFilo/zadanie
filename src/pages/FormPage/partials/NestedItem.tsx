@@ -1,5 +1,5 @@
 // core
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 // components
 import { Input } from "../../../components/Input/Input";
 // styles

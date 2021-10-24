@@ -7,6 +7,9 @@ import { Button } from "../../../components/Button/Button";
 // styles
 import css from "../FormPage.module.scss";
 import { NestedItem } from "../partials/NestedItem";
+// libraries
+import { FieldArray } from "formik";
+
 interface ISecondStepFormProps {
   nestedCount: number;
   onAdd: () => void;
@@ -29,19 +32,30 @@ export const SecondStepForm = ({
         />
       </div>
 
-      <div>
-        {Array(nestedCount)
-          .fill("")
-          .map((_, index) => (
-            <NestedItem key={index} index={index} />
-          ))}
+      <FieldArray
+        name="nested"
+        render={({ push }) => (
+          <>
+            {Array(nestedCount)
+              .fill("")
+              .map((_, index) => (
+                <NestedItem key={index} index={index} />
+              ))}
 
-        {nestedCount < 5 && (
-          <Button className={css.marginTop} onClick={() => onAdd()}>
-            +
-          </Button>
+            {nestedCount < 5 && (
+              <Button
+                className={css.marginTop}
+                onClick={() => {
+                  onAdd();
+                  push({ name: "", count: 0, price: 0 });
+                }}
+              >
+                +
+              </Button>
+            )}
+          </>
         )}
-      </div>
+      />
     </div>
   );
 };

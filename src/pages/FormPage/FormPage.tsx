@@ -31,7 +31,7 @@ const formValidationSchema = Yup.object()
       .of(
         Yup.object()
           .shape({
-            name: Yup.string().ensure().required(),
+            name: Yup.string().default("").ensure().required(),
             count: Yup.number().default(0).required().integer().strict(true),
             price: Yup.number().default(0).required(),
           })
@@ -41,8 +41,9 @@ const formValidationSchema = Yup.object()
 
     phone: Yup.string()
       .ensure()
-      .matches(phoneRegExp, "Phone number is not valid"),
-    email: Yup.string().ensure().email(),
+      .matches(phoneRegExp, "Phone number is not valid")
+      .required(),
+    email: Yup.string().ensure().email().required(),
   })
   .defined();
 
